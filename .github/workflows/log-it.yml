@@ -20,7 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log input
-        run: echo "Message: ${{ inputs.message }}"
+        run:  |
+          echo "Message: ${{ inputs.message }}"
       - name: Call shared action
         uses: hodgkind/shared-actions/.github/actions/test@main
         with:
