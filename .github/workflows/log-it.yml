@@ -1,0 +1,27 @@
+name: Log Input Workflow
+
+on:
+  workflow_call: # lets other repos call it
+    inputs:
+      message:
+        description: "The message to log"
+        required: true
+        type: string
+
+  workflow_dispatch: # lets you trigger it manually via the UI
+    inputs:
+      message:
+        description: "The message to log"
+        required: true
+        default: "Hello from the UI 🎉"
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log input
+        run: echo "Message: ${{ inputs.message }}"
+      - name: Call shared action
+        uses: hodgkind/shared-actions/.github/actions/test@main
+        with:
+          message: "Hello from the consumer repo 🎉"
